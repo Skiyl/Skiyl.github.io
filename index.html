@@ -4,16 +4,52 @@
 <meta charset="utf-8">
 <title>ZYL</title>
 </head>
-<body style="text-align:center;">
-    <h1>ZYL的第一个Web</h1>
-    <hr/>
-	<h4>静夜思</h4>
-    <p>床前明月光，</p>
-    <p>疑是地上霜。</p>
-    <p>举头望明月，</p>
-    <p>低头思故乡。</p>
-    <hr/>
-<a href="djs.html">倒计时</a>
-<hr/>
+<body style="background: #00EEEE;">
+    <h1 style="text-align:center;">Skiyl</h1>
+
+    <p style="text-align:center;">
+	莫 天<br/>
+	愁 下<br/>
+	前 谁<br/>
+	路 人<br/>
+	无 不<br/>
+	知 识<br/>
+	己 君<br/>
+<br/>
+	</p>
+	<div style="text-align:center;">
+		<a href="djs.html">倒计时</a>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div id="clock" style="text-align:right;">
+		<p>{{ date }}<br/><br/>{{ time }}</p>
+	</div>
+
+
+	<script type="text/javascript" src="js/index/vue.min.js"></script>
+	<script>
+	var clock = new Vue({
+		el: '#clock',
+		data: {
+			time: '',
+			date: ''
+		}
+	});
+
+	var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+	var timerID = setInterval(updateTime, 1000);
+	updateTime();
+	function updateTime() {
+		var cd = new Date();
+		clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+		clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+	};
+
+	function zeroPadding(num, digit) {
+		var zero = '';
+		for(var i = 0; i < digit; i++) {
+			zero += '0';
+		}
+		return (zero + num).slice(-digit);
+	}</script>
 </body>
 </html>
